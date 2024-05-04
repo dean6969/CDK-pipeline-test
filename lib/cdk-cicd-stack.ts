@@ -63,7 +63,7 @@ export class CdkCicdStack extends cdk.Stack {
 
     
     pipeline.addStage(new PipelineStage(this, 'PipelineTestStage', {
-      stageName: 'Dev'
+      stageName: 'Deploy'
     }));
   }
 }
