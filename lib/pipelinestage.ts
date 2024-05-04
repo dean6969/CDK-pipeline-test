@@ -1,6 +1,7 @@
 import { Stage, StageProps } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { LambdaStack} from './lambdastack';
+import { TestStage } from './teststage';
 
 export class PipelineStage extends Stage {
     constructor(scope: Construct, id: string, props: StageProps) {
@@ -8,6 +9,10 @@ export class PipelineStage extends Stage {
     
         // Now passing a LambdaStackProps object to LambdaStack
         new LambdaStack(this, 'LambdaStack', {
+            stageName: props.stageName
+        });
+
+        new TestStage(this, 'TestStage', {
             stageName: props.stageName
         });
     }

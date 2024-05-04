@@ -4,7 +4,6 @@ import { Construct } from 'constructs';
 import {pipelines} from 'aws-cdk-lib';
 import { PipelineStage } from './pipelinestage';
 import { BuildSpec } from 'aws-cdk-lib/aws-codebuild';
-import { TestStage } from './teststage';
 
 export class CdkCicdStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
@@ -46,8 +45,9 @@ export class CdkCicdStack extends cdk.Stack {
 
     // Add the test stage to the pipeline
     // Adding the TestStage to the pipeline
-    const testStage = new TestStage(this, 'Test');
-    pipeline.addStage(testStage);
+    pipeline.addStage(new PipelineStage(this, 'TestStage', {
+      stageName: 'Test'
+    }));
     
     pipeline.addStage(new PipelineStage(this, 'PipelineTestStage', {
       stageName: 'Dev'
