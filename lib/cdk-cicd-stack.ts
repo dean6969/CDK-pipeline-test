@@ -2,12 +2,14 @@ import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 // import * as sqs from 'aws-cdk-lib/aws-sqs';
 import {pipelines} from 'aws-cdk-lib';
+import { PipelineStage } from './pipelinestage';
 
 
 export class CdkCicdStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
+    
     const pipeline = new pipelines.CodePipeline(this, 'Pipeline', {
       synth: new pipelines.ShellStep('Synth', {
         // Use a connection created using the AWS console to authenticate to GitHub
@@ -20,11 +22,14 @@ export class CdkCicdStack extends cdk.Stack {
           'npm run build',
           'npx cdk synth',
         ],
+        primaryOutputDirectory: 'cdk.out'
       }),
     });
 
     ///////////////////////////////////
-    PrimaryOutputDirectory: 'cdk.out'
-
+    
+    const testStage = pipeline.addStage(new PipelineStage(this, 'PipelineTestStage', {
+      stageName: 'Test'
+    }));
   }
 }
