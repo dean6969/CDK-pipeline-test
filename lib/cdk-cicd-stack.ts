@@ -33,8 +33,7 @@ export class CdkCicdStack extends cdk.Stack {
         commands: [
           'npm ci',
           'npm run build',
-          'npx cdk synth',
-          'pip install -r requirements.txt'
+          'npx cdk synth'
         ],
         primaryOutputDirectory: 'cdk.out'
       }),
@@ -49,7 +48,9 @@ export class CdkCicdStack extends cdk.Stack {
     // Adding a testing step directly within the pipeline
     // Add a test stage as an additional step
     const testStage = new pipelines.ShellStep('TestStage', {
-      commands: ['chmod +x ./test_pipeline.sh',
+      commands: [
+        'pip install -r requirements.txt',
+        'chmod +x ./test_pipeline.sh',
                 './test_pipeline.sh'
     ]
     });
