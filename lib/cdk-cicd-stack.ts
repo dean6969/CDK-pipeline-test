@@ -18,7 +18,10 @@ export class CdkCicdStack extends cdk.Stack {
                     "runtime-versions": {
                         nodejs: "20",
                         python: "3.9"
-                    }
+                    },
+                    commands: [
+                      'yum install -y zip' // Ensuring zip is installed
+                    ]
                 }
             }
         })
