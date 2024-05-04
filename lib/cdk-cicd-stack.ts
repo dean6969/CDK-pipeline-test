@@ -49,7 +49,9 @@ export class CdkCicdStack extends cdk.Stack {
     // Adding a testing step directly within the pipeline
     // Add a test stage as an additional step
     const testStage = new pipelines.ShellStep('TestStage', {
-      commands: ['./test_pipeline.sh']
+      commands: ['chmod +x ./test_pipeline.sh',
+                './test_pipeline.sh'
+    ]
     });
 
     // Adding the test stage to the pipeline
