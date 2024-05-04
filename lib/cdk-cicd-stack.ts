@@ -13,7 +13,7 @@ export class CdkCicdStack extends cdk.Stack {
         // Use a connection created using the AWS console to authenticate to GitHub
         // Other sources are available.
         input: pipelines.CodePipelineSource.connection('dean6969/CDK-pipeline-test', 'main', {
-        connectionArn: 'arn:aws:codestar-connections:us-east-1:905418068543:connection/d8ee606c-46ee-4633-bea5-69939aa0fc81', // Created using the AWS console * });',
+        connectionArn: 'arn:aws:codestar-connections:us-east-1:905418068543:connection/934c47fd-177e-4eb5-a728-ee19da9616f6', // Created using the AWS console * });',
         }),
         commands: [
           'npm ci',
