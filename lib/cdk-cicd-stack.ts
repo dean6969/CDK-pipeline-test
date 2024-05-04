@@ -16,7 +16,7 @@ export class CdkCicdStack extends cdk.Stack {
             phases: {
                 install: {
                     "runtime-versions": {
-                        nodejs: "14",
+                        nodejs: "20",
                         python: "3.9"
                     }
                 }
@@ -33,6 +33,7 @@ export class CdkCicdStack extends cdk.Stack {
         commands: [
           'npm ci',
           'npm run build',
+          'zip module/hello.py module/hello.zip',
           'npx cdk synth',
           'pip install -r requirements.txt',
         ],
