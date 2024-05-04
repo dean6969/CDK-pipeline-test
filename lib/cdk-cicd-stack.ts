@@ -49,7 +49,6 @@ export class CdkCicdStack extends cdk.Stack {
     // Add a test stage as an additional step
     const testStage = new pipelines.ShellStep('TestStage', {
       commands: [
-        'pip install -r requirements.txt',
         'chmod +x ./test_pipeline.sh',
                 './test_pipeline.sh'
     ]

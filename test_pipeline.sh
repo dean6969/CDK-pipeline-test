@@ -1,3 +1,5 @@
+pip install -r requirements_test.txt
+
 py_chk=\"$(pycodestyle --max-line-length=120 */*/*.py)\"
 echo $py_chk
 if [ ${#py_chk} != 0 ]; 
