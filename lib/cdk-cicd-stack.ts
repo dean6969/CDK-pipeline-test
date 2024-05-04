@@ -11,6 +11,19 @@ export class CdkCicdStack extends cdk.Stack {
 
     
     const pipeline = new pipelines.CodePipeline(this, 'Pipeline', {
+      synthCodeBuildDefaults: {
+        partialBuildSpec: BuildSpec.fromObject({
+            phases: {
+                install: {
+                    "runtime-versions": {
+                        nodejs: "14",
+                        python: "3.9"
+                    }
+                }
+            }
+        })
+    },
+      
       synth: new pipelines.ShellStep('Synth', {
         // Use a connection created using the AWS console to authenticate to GitHub
         // Other sources are available.
@@ -25,18 +38,7 @@ export class CdkCicdStack extends cdk.Stack {
         ],
         primaryOutputDirectory: 'cdk.out'
       }),
-      synthCodeBuildDefaults: {
-        partialBuildSpec: BuildSpec.fromObject({
-            phases: {
-                install: {
-                    "runtime-versions": {
-                        nodejs: "14",
-                        python: "3.9"
-                    }
-                }
-            }
-        })
-    }
+      
     });
 
     ///////////////////////////////////
