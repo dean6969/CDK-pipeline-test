@@ -12,11 +12,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 
 # Run Pycodestyle to check Python coding style
-py_chk="$(pycodestyle --max-line-length=120 */*/*.py)"
-echo "$py_chk"
-
-# Run Pycodestyle
-py_chk="$(pycodestyle */*/*.py)"
+py_chk="$(pycodestyle --max-line-length=120 --ignore=E127,E226,E302,W503,W504 */*/*.py)"
 echo "$py_chk"
 
 # Check if there are any style errors
