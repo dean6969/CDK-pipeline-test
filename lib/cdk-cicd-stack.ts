@@ -18,10 +18,7 @@ export class CdkCicdStack extends cdk.Stack {
                     "runtime-versions": {
                         nodejs: "20",
                         python: "3.9"
-                    },
-                    commands: [
-                      'yum install -y zip' // Ensuring zip is installed
-                    ]
+                    }
                 }
             }
         })
@@ -37,9 +34,7 @@ export class CdkCicdStack extends cdk.Stack {
           'npm ci',
           'npm run build',
           'npx cdk synth',
-          'pip install -r requirements.txt',
-          "cd lib/module",
-          'zip -r lambda_function.zip lambda_function.py || echo "Zipping failed with exit code $?"'
+          'pip install -r requirements.txt'
         ],
         primaryOutputDirectory: 'cdk.out'
       }),

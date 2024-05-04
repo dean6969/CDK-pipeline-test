@@ -6,10 +6,9 @@
   },
   "scripts": {
     "build": "tsc",
-    "watch": "tsc -w",
     "test": "jest",
     "cdk": "cdk",
-    "zip": "cd lib/module && zip -r lambda_function.zip lambda_function.py"
+    "postbuild": "cd lib/module && zip -r lambda_function.zip lambda_function.py"
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",
