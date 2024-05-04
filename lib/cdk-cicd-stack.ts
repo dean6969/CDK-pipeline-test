@@ -39,15 +39,26 @@ export class CdkCicdStack extends cdk.Stack {
         primaryOutputDirectory: 'cdk.out'
       }),
       
+      
     });
 
     ///////////////////////////////////
 
     // Add the test stage to the pipeline
     // Adding the TestStage to the pipeline
-    pipeline.addStage(new PipelineStage(this, 'TestStage', {
-      stageName: 'Test'
-    }));
+    // Adding a testing step directly within the pipeline
+    // Add a test stage as an additional step
+    const testStage = new pipelines.ShellStep('TestStage', {
+      commands: ['./test_pipeline.sh']
+    });
+
+    // Adding the test stage to the pipeline
+    // Add the test step to the pipeline after the synth step
+    pipeline.addWave('TestWave', {
+      post: [testStage]
+    });
+    
+
     
     pipeline.addStage(new PipelineStage(this, 'PipelineTestStage', {
       stageName: 'Dev'

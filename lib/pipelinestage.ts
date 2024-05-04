@@ -11,9 +11,5 @@ export class PipelineStage extends Stage {
         new LambdaStack(this, 'LambdaStack', {
             stageName: props.stageName
         });
-
-        new TestStage(this, 'TestStage', {
-            stageName: props.stageName
-        });
     }
 }
