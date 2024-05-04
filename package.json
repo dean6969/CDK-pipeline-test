@@ -9,7 +9,7 @@
     "watch": "tsc -w",
     "test": "jest",
     "cdk": "cdk",
-    "zip": "cd module && zip -r lambda_function.zip lambda_function.py"
+    "zip": "cd lib/module && zip -r lambda_function.zip lambda_function.py"
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",
