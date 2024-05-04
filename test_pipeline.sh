@@ -1,3 +1,7 @@
+#!/bin/bash
+set -e  # Exit on error
+set -x  # Print each command before executing
+
 # Create a Python virtual environment
 python -m venv venv
 
@@ -11,12 +15,14 @@ pip install -r requirements.txt
 py_chk="$(pycodestyle --max-line-length=120 */*/*.py)"
 echo "$py_chk"
 
-# Check if pycodestyle output is not empty (which means style errors were found)
-py_chk=\"$(pycodestyle --max-line-length=120 */*/*.py)\"
-echo $py_chk
-if [ ${#py_chk} != 0 ]; 
-then  
-exit 1;
+# Run Pycodestyle
+py_chk="$(pycodestyle */*/*.py)"
+echo "$py_chk"
+
+# Check if there are any style errors
+if [ -n "$py_chk" ]; then  
+  echo "Style errors detected"
+  exit 1
 fi
 
 # Deactivate the virtual environment
