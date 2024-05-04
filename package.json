@@ -9,7 +9,8 @@
     "watch": "tsc -w",
     "test": "jest",
     "cdk": "cdk",
-    "zip": "cd module && zip -r hello.zip hello.py"
+    "zip": "cd module && zip -r hello.zip hello.py",
+    "python": "pip install -r requirements.txt"
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",
