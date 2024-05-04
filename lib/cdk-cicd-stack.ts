@@ -50,7 +50,7 @@ export class CdkCicdStack extends cdk.Stack {
     const testStage = new pipelines.ShellStep('TestStage', {
       commands: [
         'chmod +x ./test_pipeline.sh',
-                './test_pipeline.sh'
+        'bash ./test_pipeline.sh'
     ]
     });
 
