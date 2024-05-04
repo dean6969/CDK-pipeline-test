@@ -1,4 +1,4 @@
-pip install -r requirements_test.txt
+pip install -r requirements.txt
 
 py_chk=\"$(pycodestyle --max-line-length=120 */*/*.py)\"
 echo $py_chk
