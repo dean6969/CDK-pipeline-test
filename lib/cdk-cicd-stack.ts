@@ -3,7 +3,7 @@ import { Construct } from 'constructs';
 // import * as sqs from 'aws-cdk-lib/aws-sqs';
 import {pipelines} from 'aws-cdk-lib';
 import { PipelineStage } from './pipelinestage';
-
+import { BuildSpec } from 'aws-cdk-lib/aws-codebuild';
 
 export class CdkCicdStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
@@ -21,9 +21,22 @@ export class CdkCicdStack extends cdk.Stack {
           'npm ci',
           'npm run build',
           'npx cdk synth',
+          'pip install -r requirements.txt',
         ],
         primaryOutputDirectory: 'cdk.out'
       }),
+      synthCodeBuildDefaults: {
+        partialBuildSpec: BuildSpec.fromObject({
+            phases: {
+                install: {
+                    "runtime-versions": {
+                        nodejs: "14",
+                        python: "3.9"
+                    }
+                }
+            }
+        })
+    }
     });
 
     ///////////////////////////////////
