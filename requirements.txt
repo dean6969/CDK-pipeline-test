@@ -1,2 +1,2 @@
 pycodestyle
-codecoverage
+coverage
