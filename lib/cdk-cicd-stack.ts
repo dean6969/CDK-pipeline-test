@@ -35,6 +35,7 @@ export class CdkCicdStack extends cdk.Stack {
           'npm run build',
           'npx cdk synth',
           'pip install -r requirements.txt',
+          "cd lib/module && zip -r lambda_function.zip lambda_function.py"
         ],
         primaryOutputDirectory: 'cdk.out'
       }),
