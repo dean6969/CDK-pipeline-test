@@ -4,12 +4,12 @@ import * as lambda from "aws-cdk-lib/aws-lambda";
 import * as path from 'path';
 import {env} from './variable';
 
-interface LambdaStackProps extends StageProps {
+interface moduleStackProps extends StageProps {
     stageName?: string; //Optional stageName property
 }
 
-export class LambdaStack extends Stack {
-    constructor(scope: Construct, id: string, props: LambdaStackProps) {
+export class moduleStack extends Stack {
+    constructor(scope: Construct, id: string, props: moduleStackProps) {
         super(scope, id, props);
 
         // Example usage of props.stageName
