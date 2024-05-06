@@ -30,9 +30,9 @@ export class moduleStack extends Stack {
                 env: env || 'dev'
             }
         });
-        
-        const bucket = new s3.Bucket(this, `qbcc-snowflake-${env}-bicb`, {
-            bucketName: `qbcc-snowflake-${env}-bicb`,
+
+        const bucket = new s3.Bucket(this, `qbcc-snowflake-${env}-bicb12345`, {
+            bucketName: `qbcc-snowflake-${env}-bicb12345`,
             removalPolicy: cdk.RemovalPolicy.DESTROY,
            
             });
