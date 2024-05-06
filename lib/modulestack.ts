@@ -3,6 +3,10 @@ import { Construct } from "constructs";
 import * as lambda from "aws-cdk-lib/aws-lambda";
 import * as path from 'path';
 import {env} from './variable';
+import * as s3 from 'aws-cdk-lib/aws-s3';
+import * as cdk from 'aws-cdk-lib';
+
+
 
 interface moduleStackProps extends StageProps {
     stageName?: string; //Optional stageName property
@@ -27,6 +31,11 @@ export class moduleStack extends Stack {
             }
         });
         
+        const bucket = new s3.Bucket(this, `qbcc-snowflake-${env}-bicb`, {
+            bucketName: `qbcc-snowflake-${env}-bicb`,
+            removalPolicy: cdk.RemovalPolicy.DESTROY,
+           
+            });
             
     }
 }
